@@ -3,6 +3,7 @@ package edu.upb.pumatiti;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
         RepositoryImpl repository = new MockRepository();
         List<String> rutas = repository.getRutas();
+        Log.i("Esta es una prueba","SI");
 
         Cuadrado cuadrado = new Cuadrado();
         Triangulo triangulo = new Triangulo();
