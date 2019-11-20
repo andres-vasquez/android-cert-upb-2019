@@ -1,8 +1,10 @@
-package edu.upb.pumatiti;
+package edu.upb.pumatiti.ui.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import edu.upb.pumatiti.R;
 
 public class MainActivity extends AppCompatActivity {
 
