@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">PumaTiti</string>
+    <!-- Login Page -->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="send">Send</string>
+    <string name="register">Register</string>
 </resources>
