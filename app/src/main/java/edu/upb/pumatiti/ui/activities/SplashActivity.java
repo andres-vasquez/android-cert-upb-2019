@@ -67,7 +67,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     /**
-     * Para que el click function tiene que cumplir:
+     * Para el click function tiene que cumplir:
      * public --> Pública
      * View view --> Recibir como parámetro view
      *

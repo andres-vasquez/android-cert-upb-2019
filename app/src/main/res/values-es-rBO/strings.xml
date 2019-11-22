@@ -5,4 +5,7 @@
     <string name="password">Contraseña</string>
     <string name="register">Registrar</string>
     <string name="send">Enviar</string>
+    <string name="error_empty">Por favor, llene todos los campos requeridos.</string>
+    <string name="welcome">Bienvenid@: %s</string>
+    <string name="error_invalid_email">Ingrese un email válido</string>
 </resources>

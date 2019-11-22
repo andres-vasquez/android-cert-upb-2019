@@ -4,45 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".ui.activities.LoginActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="25dp"
-        android:background="@color/colorPrimaryLight"
-        android:orientation="vertical"
-        android:padding="30dp">
-
-        <TextView
-            android:id="@+id/emailTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/email" />
-
-        <EditText
-            android:id="@+id/emailEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textEmailAddress" />
-
-        <TextView
-            android:id="@+id/passwordTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/password" />
-
-        <EditText
-            android:id="@+id/passwordEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPassword" />
+        android:background="@drawable/login_shape"
+        android:padding="25dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/logoImageView"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="25dp"
+            android:orientation="vertical"
+            android:padding="30dp">
+
+            <TextView
+                android:id="@+id/emailTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/email" />
+
+            <EditText
+                android:id="@+id/emailEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textEmailAddress" />
+
+            <TextView
+                android:id="@+id/passwordTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/password" />
+
+            <EditText
+                android:id="@+id/passwordEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPassword" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:orientation="horizontal">
 
             <Button
@@ -50,7 +68,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/register" />
+                android:text="@string/register"
+                android:theme="@style/Widget.AppCompat.Button.Colored" />
 
             <Button
                 android:id="@+id/sendButton"
@@ -59,5 +78,14 @@
                 android:layout_weight="1"
                 android:text="@string/send" />
         </LinearLayout>
-    </LinearLayout>
+
+        <ImageView
+            android:id="@+id/logoImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="false"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+    </RelativeLayout>
+
 </FrameLayout>
