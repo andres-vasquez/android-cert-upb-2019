@@ -11,6 +11,7 @@ import java.util.List;
 import edu.upb.pumatiti.models.repository.Base;
 import edu.upb.pumatiti.models.repository.Route;
 import edu.upb.pumatiti.models.repository.User;
+import edu.upb.pumatiti.repository.firebase.FirebaseRepository;
 
 public class Repository implements RepositoryImpl {
 
@@ -20,13 +21,7 @@ public class Repository implements RepositoryImpl {
 
     @Override
     public LiveData<Base> login(String email, String password) {
-        MutableLiveData<Base> userMutableLiveData = new MutableLiveData<>();
-        User user = new User();
-        user.setName("Test");
-        user.setEmail("test@test.com");
-
-        userMutableLiveData.postValue(new Base(user));
-        return userMutableLiveData;
+        return FirebaseRepository.getInstance().login(email, password);
     }
 
     @Override

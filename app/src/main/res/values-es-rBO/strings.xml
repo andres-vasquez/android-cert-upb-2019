@@ -10,6 +10,7 @@
     <string name="error_empty">Por favor, llene todos los campos requeridos.</string>
     <string name="welcome">Bienvenid@: %s</string>
     <string name="error_invalid_email">Ingrese un email válido</string>
+    <string name="error_login_failed">Error al ingresar.</string>
     <string name="menu_routes">Rutas</string>
     <string name="menu_rules">Reglas</string>
     <string name="menu_news">Noticias</string>

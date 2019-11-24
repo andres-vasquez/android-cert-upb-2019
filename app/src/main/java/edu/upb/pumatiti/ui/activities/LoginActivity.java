@@ -1,6 +1,8 @@
 package edu.upb.pumatiti.ui.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +13,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import edu.upb.pumatiti.R;
+import edu.upb.pumatiti.models.repository.Base;
+import edu.upb.pumatiti.utils.Constants;
+import edu.upb.pumatiti.viewmodel.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,11 +31,14 @@ public class LoginActivity extends AppCompatActivity {
     private Button registerButton;
     private Button sendButton;
 
+    private LoginViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+
         Log.e(LOG, "onCreate");
 
         this.context = this;
@@ -60,19 +70,27 @@ public class LoginActivity extends AppCompatActivity {
                 String password = passwordEditText.getText().toString();
 
                 if (!email.isEmpty() && !password.isEmpty()) {
-                    if (!email.contains("@")) {
-                        emailEditText.setError(getString(R.string.error_invalid_email));
-                    }
-
-                    Toast.makeText(context,
-                            getString(R.string.welcome, email),
-                            Toast.LENGTH_SHORT)
-                            .show();
+                    login(email, password);
                 } else {
                     Toast.makeText(context,
                             R.string.error_empty,
                             Toast.LENGTH_SHORT)
                             .show();
+                }
+            }
+        });
+    }
+
+    private void login(String email, String password) {
+        viewModel.login(email, password).observe(this, new Observer<Base>() {
+            @Override
+            public void onChanged(Base base) {
+                if (base.isSuccess()) {
+                    Intent intent = new Intent(context, MainActivity.class);
+                    intent.putExtra(Constants.INTENT_KEY_USER, new Gson().toJson(base.getData()));
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(context, R.string.error_login_failed, Toast.LENGTH_SHORT).show();
                 }
             }
         });

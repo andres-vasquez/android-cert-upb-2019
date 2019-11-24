@@ -11,6 +11,7 @@
     <string name="error_empty">Please enter all mandatory fields.</string>
     <string name="welcome">Welcome: %s</string>
     <string name="error_invalid_email">Enter a valid email</string>
+    <string name="error_login_failed">Authentication failed.</string>
 
     <!-- Main menu -->
     <string name="menu_routes">Routes</string>
