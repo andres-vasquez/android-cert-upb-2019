@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">PumaTiti</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
     <!-- Login Page -->
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -8,5 +11,10 @@
     <string name="error_empty">Please enter all mandatory fields.</string>
     <string name="welcome">Welcome: %s</string>
     <string name="error_invalid_email">Enter a valid email</string>
+
+    <!-- Main menu -->
+    <string name="menu_routes">Routes</string>
+    <string name="menu_rules">Rules</string>
+    <string name="menu_news">News</string>
 
 </resources>

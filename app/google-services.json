@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1034199982546",
+    "firebase_url": "https://pumatiti-preparation.firebaseio.com",
+    "project_id": "pumatiti-preparation",
+    "storage_bucket": "pumatiti-preparation.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034199982546:android:579c0300c597f70d3aa80b",
+        "android_client_info": {
+          "package_name": "edu.upb.pumatiti.preparation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034199982546-d9tpkmlumtfr6qc9l3e4md07nl2mqlp6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.upb.pumatiti.preparation",
+            "certificate_hash": "d81dd7f59bdb5e70a6b2e91dd8d9e31d3d805533"
+          }
+        },
+        {
+          "client_id": "1034199982546-5dqjvva8g6vp2cgfc337bau2nmll7lei.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDng1Nbfei328HZWb__Axb5NW04PIhF5NA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1034199982546-5dqjvva8g6vp2cgfc337bau2nmll7lei.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

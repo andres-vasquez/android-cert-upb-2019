@@ -4,8 +4,8 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "edu.upb.pumatiti"
-        minSdkVersion 15
+        applicationId "edu.upb.pumatiti.preparation"
+        minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -42,4 +42,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // Firebase
+    implementation "com.google.firebase:firebase-auth:$rootProject.firebaseAuth"
+    implementation "com.google.firebase:firebase-database:$rootProject.firebaseDatabase"
 }
+
+apply plugin: 'com.google.gms.google-services'
