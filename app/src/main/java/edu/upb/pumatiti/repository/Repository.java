@@ -1,9 +1,13 @@
 package edu.upb.pumatiti.repository;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +16,11 @@ import edu.upb.pumatiti.models.repository.Base;
 import edu.upb.pumatiti.models.repository.Route;
 import edu.upb.pumatiti.models.repository.User;
 import edu.upb.pumatiti.repository.firebase.FirebaseRepository;
+import edu.upb.pumatiti.utils.Constants;
 
 public class Repository implements RepositoryImpl {
+
+    private static final String LOG = Repository.class.getSimpleName();
 
     public Repository(Application application) {
 
@@ -27,13 +34,13 @@ public class Repository implements RepositoryImpl {
     @Override
     public LiveData<Base> getRoutes() {
         MutableLiveData<Base> routesMutableLiveData = new MutableLiveData<>();
-        List<Route> routes = new ArrayList<>();
-        //Routes without bus data
-
-        routes.add(new Route("1", "Chasquipampa"));
-        routes.add(new Route("2", "Irpavi"));
-
-        routesMutableLiveData.postValue(new Base(routes));
+        try {
+            List<Route> routes = new Gson().fromJson(Constants.TEMP_ROUTES, new TypeToken<List<Route>>() {
+            }.getType());
+            routesMutableLiveData.postValue(new Base(routes));
+        } catch (Exception ex) {
+            Log.e(LOG, "" + ex.getMessage());
+        }
         return routesMutableLiveData;
     }
 

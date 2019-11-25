@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button sendButton;
 
     private LoginViewModel viewModel;
+    private ProgressDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,10 @@ public class LoginActivity extends AppCompatActivity {
         this.context = this;
         initUI();
         initEvents();
+
+        //Only for testing
+        emailEditText.setText("user@pumatiti.com");
+        passwordEditText.setText("123456");
 
         Intent intent = getIntent();
         if (intent.hasExtra("message")) {
@@ -82,9 +88,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login(String email, String password) {
+        showLoading();
         viewModel.login(email, password).observe(this, new Observer<Base>() {
             @Override
             public void onChanged(Base base) {
+                dissmissLoading();
                 if (base.isSuccess()) {
                     Intent intent = new Intent(context, MainActivity.class);
                     intent.putExtra(Constants.INTENT_KEY_USER, new Gson().toJson(base.getData()));
@@ -134,5 +142,20 @@ public class LoginActivity extends AppCompatActivity {
 
     public void registerClick(View view) {
         Log.e(LOG, "registerClick");
+    }
+
+    private void showLoading() {
+        if (loadingDialog == null) {
+            loadingDialog = new ProgressDialog(context);
+            loadingDialog.setMessage(getString(R.string.loading));
+            loadingDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        }
+        loadingDialog.show();
+    }
+
+    private void dissmissLoading() {
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
     }
 }

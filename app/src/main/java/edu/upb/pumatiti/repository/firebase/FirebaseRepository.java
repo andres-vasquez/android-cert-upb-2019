@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,7 +24,7 @@ public class FirebaseRepository {
 
     private static final String LOG = FirebaseRepository.class.getSimpleName();
 
-    static FirebaseRepository instance;
+    private static FirebaseRepository instance;
     private FirebaseAuth auth;
     private FirebaseDatabase db;
 
@@ -41,7 +42,7 @@ public class FirebaseRepository {
 
 
     public LiveData<Base> login(String email, String password) {
-        final MutableLiveData<Base> result = new MutableLiveData();
+        final MutableLiveData<Base> result = new MutableLiveData<>();
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -57,18 +58,26 @@ public class FirebaseRepository {
                                             task.getException()));
                         }
                     }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(LOG, "" + e.getMessage());
+                        result.postValue(
+                                new Base("autentication_failed_internet", e));
+                    }
                 });
         return result;
     }
 
     public LiveData<Base> setValue(String path, Object value) {
-        final MutableLiveData<Base> result = new MutableLiveData();
+        final MutableLiveData<Base> result = new MutableLiveData<>();
         db.getReference(path).setValue(value);
         return result;
     }
 
     public LiveData<Base> subscribeToValues(String path) {
-        final MutableLiveData<Base> result = new MutableLiveData();
+        final MutableLiveData<Base> result = new MutableLiveData<>();
         db.getReference(path).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
