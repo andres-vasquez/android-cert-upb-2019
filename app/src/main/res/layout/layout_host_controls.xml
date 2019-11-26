@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_weight="5"
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="24sp"
@@ -67,10 +67,11 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
+            android:layout_weight="5"
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/plateTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
@@ -79,6 +80,7 @@
                 tools:text="123-ABC" />
 
             <TextView
+                android:id="@+id/routeTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
@@ -93,6 +95,7 @@
             android:background="@color/colorDivider" />
 
         <ImageView
+            android:id="@+id/playImageView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -105,6 +108,7 @@
             android:background="@color/colorDivider" />
 
         <ImageView
+            android:id="@+id/pauseImageView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
