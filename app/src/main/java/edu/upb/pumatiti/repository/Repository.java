@@ -1,21 +1,25 @@
 package edu.upb.pumatiti.repository;
 
+import androidx.lifecycle.LiveData;
+
 import edu.upb.pumatiti.models.repository.Base;
+import edu.upb.pumatiti.repository.api.ApiRepository;
+import edu.upb.pumatiti.repository.firebase.FirebaseRepository;
 
-public class Repository implements RepositoryImpl{
+public class Repository implements RepositoryImpl {
 
     @Override
-    public Base login(String email, String password) {
-        return null;
+    public LiveData<Base> login(String email, String password) {
+        return FirebaseRepository.getInstance().login(email, password);
     }
 
     @Override
-    public Base getRoutes() {
-        return null;
+    public LiveData<Base> getRoutes() {
+        return ApiRepository.getInstance().getRoutes();
     }
 
     @Override
-    public Base getRouteDetails(String uuid) {
+    public LiveData<Base> getRouteDetails(String uuid) {
         return null;
     }
 }

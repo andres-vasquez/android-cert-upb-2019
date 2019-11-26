@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">PumaTiti</string>
+    <string name="loading">Loading, please wait</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
     <!-- Login Page -->
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -8,5 +12,16 @@
     <string name="error_empty">Please enter all mandatory fields.</string>
     <string name="welcome">Welcome: %s</string>
     <string name="error_invalid_email">Enter a valid email</string>
+    <string name="error_login_failed">Authentication failed.</string>
 
+    <!-- Main menu -->
+    <string name="menu_routes">Routes</string>
+    <string name="menu_rules">Rules</string>
+    <string name="menu_news">News</string>
+
+    <!-- Rules -->
+    <string name="rules_title">Rules</string>
+    <string name="rules_content">Pumakatari and Pumatititi lalallaal</string>
+
+    <!-- News -->
 </resources>

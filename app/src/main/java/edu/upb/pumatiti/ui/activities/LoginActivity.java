@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,8 +18,8 @@ import android.widget.Toast;
 
 import edu.upb.pumatiti.R;
 import edu.upb.pumatiti.models.repository.Base;
+import edu.upb.pumatiti.models.repository.User;
 import edu.upb.pumatiti.viewmodel.LoginViewModel;
-import edu.upb.pumatiti.viewmodel.MainViewModel;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -75,7 +76,8 @@ public class LoginActivity extends AppCompatActivity {
                         emailEditText.setError(getString(R.string.error_invalid_email));
                     }
 
-                    showLoading();
+                    new LongLogin().execute(new UserAux(email, password));
+                    /*showLoading();
                     LiveData<Base> result = viewModel.login(email, password);
                     result.observe(LoginActivity.this, new Observer<Base>() {
                         @Override
@@ -94,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                                         .show();
                             }
                         }
-                    });
+                    });*/
                 } else {
                     Toast.makeText(context,
                             R.string.error_empty,
@@ -172,16 +174,111 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void showLoading() {
-        if (loadingDialog == null) {
-            loadingDialog = new ProgressDialog(context);
-            loadingDialog.setMessage("Loading");
-        }
+        loadingDialog = new ProgressDialog(context);
+        loadingDialog.setMessage("Loading");
+        loadingDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        loadingDialog.setMax(100);
+        loadingDialog.setProgress(0);
         loadingDialog.show();
     }
 
     private void dismissLoading() {
         if (loadingDialog != null && loadingDialog.isShowing()) {
             loadingDialog.dismiss();
+        }
+    }
+
+    private class UserAux {
+        private String email;
+        private String password;
+
+        public UserAux(String email, String password) {
+            this.email = email;
+            this.password = password;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+    }
+
+
+    /**
+     * Params: UserAux
+     * Progress: Integer 30%, 60%, 90%
+     * Result: Base
+     */
+    private class LongLogin extends AsyncTask<UserAux, Integer, Base> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            showLoading();
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            int progress = values[0];
+            Log.e(LOG, "Progress: " + progress);
+            loadingDialog.setProgress(progress);
+        }
+
+        @Override
+        protected Base doInBackground(UserAux... userAuxes) {
+            UserAux userAux = userAuxes[0];
+            String email = userAux.getEmail();
+            String password = userAux.getPassword();
+
+            try {
+                Thread.sleep(2000);
+                publishProgress(30);
+
+                Thread.sleep(2000);
+                publishProgress(60);
+
+                if (email.equals("admin@pumatiti") && password.equals("12345")) {
+                    User user = new User();
+                    user.setUuid("1");
+                    user.setEmail(email);
+                    user.setStatus(true);
+
+                    Thread.sleep(2000);
+                    publishProgress(90);
+                    Thread.sleep(2000);
+                    return new Base(user);
+                } else {
+
+                    Thread.sleep(2000);
+                    publishProgress(90);
+                    Thread.sleep(2000);
+                    return new Base("Error not found", new NullPointerException());
+                }
+            } catch (InterruptedException ex) {
+                return new Base("Interrupted", ex);
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Base base) {
+            super.onPostExecute(base);
+            dismissLoading();
+            if (base.isSuccess()) {
+                User user = (User) base.getData();
+                Toast.makeText(context,
+                        getString(R.string.welcome, user.getEmail()),
+                        Toast.LENGTH_SHORT)
+                        .show();
+            } else {
+                Toast.makeText(context,
+                        base.getMessage(),
+                        Toast.LENGTH_SHORT)
+                        .show();
+            }
         }
     }
 }
