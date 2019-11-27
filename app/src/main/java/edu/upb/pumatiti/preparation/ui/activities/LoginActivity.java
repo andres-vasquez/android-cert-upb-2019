@@ -48,8 +48,8 @@ public class LoginActivity extends AppCompatActivity {
         initEvents();
 
         //Only for testing
-        //emailEditText.setText("user@pumatiti.com");
-        emailEditText.setText("host@pumatiti.com");
+        emailEditText.setText("user@pumatiti.com");
+        //emailEditText.setText("host@pumatiti.com");
         passwordEditText.setText("123456");
 
         Intent intent = getIntent();

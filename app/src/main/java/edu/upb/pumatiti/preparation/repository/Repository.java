@@ -12,6 +12,7 @@ import com.google.gson.reflect.TypeToken;
 import java.util.List;
 
 import edu.upb.pumatiti.preparation.models.repository.Base;
+import edu.upb.pumatiti.preparation.models.repository.Bus;
 import edu.upb.pumatiti.preparation.models.repository.Route;
 import edu.upb.pumatiti.preparation.repository.api.ApiRepository;
 import edu.upb.pumatiti.preparation.repository.firebase.FirebaseRepository;
@@ -41,8 +42,7 @@ public class Repository implements RepositoryImpl {
     }
 
     @Override
-    public void saveGpsPosition(String path, double lat, double lng) {
-        FirebaseRepository.getInstance().setValue(path + "/lat", lat);
-        FirebaseRepository.getInstance().setValue(path + "/lng", lng);
+    public void saveGpsPosition(String path, Bus bus) {
+        FirebaseRepository.getInstance().setValue(path, bus);
     }
 }

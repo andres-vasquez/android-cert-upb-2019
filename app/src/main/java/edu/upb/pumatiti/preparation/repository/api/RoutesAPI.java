@@ -10,5 +10,5 @@ import retrofit2.http.Query;
 
 public interface RoutesAPI {
     @GET("api%2Froutes.json")
-    Call<List<Route>> getRoutes(@Query("alt") String alt, @Query("token") String token);
+    Call<List<Route>> getRoutes(@Query("alt") String alt);
 }

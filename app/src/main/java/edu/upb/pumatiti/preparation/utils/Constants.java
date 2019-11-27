@@ -18,12 +18,11 @@ public class Constants {
     //Default map settings
     public static final double DEFAULT_LAT = -16.524702;
     public static final double DEFAULT_LNG = -68.110632;
-    public static final int DEFAULT_ZOOM = 14;
+    public static final int DEFAULT_ZOOM = 15;
 
     //URL for testing
     public static final String BASE_URL = "https://firebasestorage.googleapis.com/v0/b/pumatiti-preparation.appspot.com/o/";
     public static final String API_PARAM_ALT = "media";
-    public static final String API_PARAM_TOKEN = "c31f9193-2e4a-4c1e-9ea6-cdf4de804bd9";
 
     //Firebase paths
     public static final String FIREBASE_PATH_BUSES = "buses";

@@ -77,7 +77,6 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
     }
 
 
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -107,7 +106,11 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
     private String getFakeBusUuid() {
         Random randomGenerator = new Random();
         int randomInt = randomGenerator.nextInt(Constants.DEFAULT_BUS_MAX_ID);
-        return Constants.DEFAULT_BUS_ID + String.format("%02d", randomInt);
+        if (randomInt == 0) {
+            return getFakeBusUuid();
+        } else {
+            return Constants.DEFAULT_BUS_ID + String.format("%02d", randomInt);
+        }
     }
 
     private void initUI(View parent) {
@@ -132,8 +135,16 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback {
     }
 
     private void initEvents() {
-        playImageView.setOnClickListener(view -> viewModel.startTimer());
-        pauseImageView.setOnClickListener(view -> viewModel.stopTimer());
+        playImageView.setOnClickListener(view -> {
+            viewModel.startTimer();
+            playImageView.setVisibility(View.GONE);
+            pauseImageView.setVisibility(View.VISIBLE);
+        });
+        pauseImageView.setOnClickListener(view -> {
+            playImageView.setVisibility(View.VISIBLE);
+            pauseImageView.setVisibility(View.GONE);
+            viewModel.stopTimer();
+        });
     }
 
     public void locationClick() {

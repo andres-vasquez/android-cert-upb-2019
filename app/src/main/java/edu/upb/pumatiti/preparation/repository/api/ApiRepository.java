@@ -31,7 +31,7 @@ public class ApiRepository {
 
     public LiveData<Base> getRoutes() {
         final MutableLiveData<Base> result = new MutableLiveData<>();
-        routesAPI.getRoutes(Constants.API_PARAM_ALT, Constants.API_PARAM_TOKEN).enqueue(new Callback<List<Route>>() {
+        routesAPI.getRoutes(Constants.API_PARAM_ALT).enqueue(new Callback<List<Route>>() {
             @Override
             public void onResponse(Call<List<Route>> call, Response<List<Route>> response) {
                 if (response.isSuccessful()) {

@@ -95,17 +95,12 @@ public class FirebaseRepository {
                     Iterator hmIterator = buses.entrySet().iterator();
                     while (hmIterator.hasNext()) {
                         Map.Entry mapElement = (Map.Entry) hmIterator.next();
-                        String uuid = (String) mapElement.getKey();
-                        Map<String, Object> bus = (Map<String, Object>) mapElement.getValue();
-                        Bus obj = new Bus();
-                        obj.setLat((double) bus.get("lat"));
-                        obj.setLng((double) bus.get("lng"));
-                        obj.setUuid(uuid);
-                        busesList.add(obj);
+                        Bus bus = (Bus) mapElement.getValue();
+                        busesList.add(bus);
                     }
                     result.postValue(new Base(busesList));
                 } catch (Exception ex) {
-
+                    Log.e(LOG, "" + ex.getMessage());
                 }
             }
 

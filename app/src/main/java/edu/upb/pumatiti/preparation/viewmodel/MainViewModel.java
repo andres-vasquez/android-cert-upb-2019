@@ -2,6 +2,7 @@ package edu.upb.pumatiti.preparation.viewmodel;
 
 import android.app.Application;
 import android.os.Handler;
+import android.util.Log;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -22,6 +23,7 @@ import edu.upb.pumatiti.preparation.utils.Constants;
 import edu.upb.pumatiti.preparation.utils.ResponseMapper;
 
 public class MainViewModel extends AndroidViewModel {
+    private static final String LOG = MainViewModel.class.getSimpleName();
     Repository repository;
 
     private List<Route> routes = new ArrayList<>();
@@ -93,16 +95,19 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     private void saveCoordinates(String busUuid) {
+        Log.e(LOG, "PC1: " + lat + "," + lng);
         lat += getRandom();
         lng += getRandom();
+        Log.e(LOG, "PC2: " + lat + "," + lng);
 
-        String path = Constants.FIREBASE_PATH_BUSES + "/" + busUuid;
-        repository.saveGpsPosition(path, lat, lng);
 
         if (myBus.getValue() != null) {
             Bus bus = myBus.getValue();
             bus.setLat(lat);
             bus.setLng(lng);
+
+            String path = Constants.FIREBASE_PATH_BUSES + "/" + busUuid;
+            repository.saveGpsPosition(path, bus);
 
             List<Bus> busesList = new ArrayList<>();
             busesList.add(bus);
@@ -113,6 +118,6 @@ public class MainViewModel extends AndroidViewModel {
     private double getRandom() {
         Random randomGenerator = new Random();
         int randomInt = randomGenerator.nextInt(100);
-        return randomInt / 10000;
+        return randomInt / 999999.9;
     }
 }
