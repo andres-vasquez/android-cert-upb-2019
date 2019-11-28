@@ -1,4 +1,9 @@
 package edu.upb.pumatiti.ui.fragments;
 
-public class NewsFragment {
+import edu.upb.pumatiti.models.ui.UserLogged;
+
+public class NewsFragment extends BaseFragment{
+    public NewsFragment(UserLogged userLogged) {
+        super(userLogged);
+    }
 }

@@ -1,4 +1,10 @@
 package edu.upb.pumatiti.ui.fragments;
 
-public class MapFragment {
+import edu.upb.pumatiti.models.ui.UserLogged;
+
+public class MapFragment extends BaseFragment {
+
+    public MapFragment(UserLogged userLogged) {
+        super(userLogged);
+    }
 }

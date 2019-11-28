@@ -16,9 +16,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import edu.upb.pumatiti.R;
 import edu.upb.pumatiti.models.repository.Base;
 import edu.upb.pumatiti.models.repository.User;
+import edu.upb.pumatiti.models.ui.UserLogged;
+import edu.upb.pumatiti.utils.Constants;
 import edu.upb.pumatiti.viewmodel.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {
@@ -76,19 +80,28 @@ public class LoginActivity extends AppCompatActivity {
                         emailEditText.setError(getString(R.string.error_invalid_email));
                     }
 
-                    new LongLogin().execute(new UserAux(email, password));
-                    /*showLoading();
+                    //new LongLogin().execute(new UserAux(email, password));
+                    showLoading();
                     LiveData<Base> result = viewModel.login(email, password);
                     result.observe(LoginActivity.this, new Observer<Base>() {
                         @Override
                         public void onChanged(Base base) {
                             dismissLoading();
                             if (base.isSuccess()) {
-                                //executeLongAction();
+                                UserLogged userLogged = (UserLogged) base.getData();
+                                String json = new Gson().toJson(userLogged);
+
                                 Toast.makeText(context,
-                                        getString(R.string.welcome, email),
+                                        getString(R.string.welcome, userLogged.getEmail()),
                                         Toast.LENGTH_SHORT)
                                         .show();
+
+                                Intent intent = new Intent(context, MainActivity.class);
+                                intent.putExtra(Constants.INTENT_KEY_USER_LOGGED, json);
+                                startActivity(intent);
+
+                                //executeLongAction();
+
                             } else {
                                 Toast.makeText(context,
                                         base.getMessage(),
@@ -96,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
                                         .show();
                             }
                         }
-                    });*/
+                    });
                 } else {
                     Toast.makeText(context,
                             R.string.error_empty,
