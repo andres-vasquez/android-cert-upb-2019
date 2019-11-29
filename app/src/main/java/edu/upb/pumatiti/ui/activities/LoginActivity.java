@@ -51,6 +51,9 @@ public class LoginActivity extends AppCompatActivity {
         initUI();
         initEvents();
 
+        emailEditText.setText("cualquiera@pumatiti.com");
+        passwordEditText.setText("noImporta");
+
         Intent intent = getIntent();
         if (intent.hasExtra("message")) {
             String message = intent.getStringExtra("message");

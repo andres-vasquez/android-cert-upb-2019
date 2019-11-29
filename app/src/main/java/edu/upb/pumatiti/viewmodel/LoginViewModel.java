@@ -26,7 +26,7 @@ public class LoginViewModel extends AndroidViewModel {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(4000);
+                    Thread.sleep(1000);
                     User user = new User();
                     user.setUuid("1");
                     user.setEmail(email);
