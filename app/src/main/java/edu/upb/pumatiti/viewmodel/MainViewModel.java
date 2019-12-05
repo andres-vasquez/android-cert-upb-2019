@@ -17,8 +17,8 @@ public class MainViewModel extends AndroidViewModel {
 
     public MainViewModel(@NonNull Application application) {
         super(application);
-        //repository = Repository.getInstance();
-        repository = MockRepository.getInstance();
+        repository = Repository.getInstance();
+        //repository = MockRepository.getInstance();
     }
 
     public LiveData<Base> getRoutes() {

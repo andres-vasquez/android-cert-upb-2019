@@ -9,4 +9,9 @@ public class Constants {
     public static final String KEY_FRAGMENT_MAP = "mapFragment";
     public static final String KEY_FRAGMENT_RULES = "rulesFragment";
     public static final String KEY_FRAGMENT_NEWS = "newsFragment";
+
+
+    public static final String API_HOST = "https://firebasestorage.googleapis.com/v0/b/pumatiti.appspot.com/o/";
+    public static final String API_PARAM_ALT = "media";
+    public static final String API_HEADER_ACCEPT = "application/json";
 }

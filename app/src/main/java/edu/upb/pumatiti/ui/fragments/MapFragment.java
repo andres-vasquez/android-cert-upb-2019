@@ -58,6 +58,11 @@ public class MapFragment extends BaseFragment {
                         Log.e("Ruta:", "" + route.getName());
                     }
 
+                } else {
+                    Log.e("Error:", base.getMessage());
+                    if (base.getException() != null) {
+                        Log.e("Exception:", "" + base.getException().getMessage());
+                    }
                 }
             }
         });
