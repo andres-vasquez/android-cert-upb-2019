@@ -12,12 +12,16 @@ import java.io.InterruptedIOException;
 import edu.upb.pumatiti.models.repository.Base;
 import edu.upb.pumatiti.models.repository.User;
 import edu.upb.pumatiti.models.ui.UserLogged;
+import edu.upb.pumatiti.repository.Repository;
 import edu.upb.pumatiti.utils.ResponseMapper;
 
 public class LoginViewModel extends AndroidViewModel {
 
+    private Repository repository;
+
     public LoginViewModel(@NonNull Application application) {
         super(application);
+        repository = Repository.getInstance();
     }
 
     public LiveData<Base> login(final String email, final String password) {
