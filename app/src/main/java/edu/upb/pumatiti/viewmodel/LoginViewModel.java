@@ -1,11 +1,16 @@
 package edu.upb.pumatiti.viewmodel;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+
+import com.google.firebase.auth.FirebaseUser;
+import com.google.gson.Gson;
 
 import java.io.InterruptedIOException;
 
@@ -26,7 +31,19 @@ public class LoginViewModel extends AndroidViewModel {
 
     public LiveData<Base> login(final String email, final String password) {
         final MutableLiveData<Base> result = new MutableLiveData<>();
-        new Thread(new Runnable() {
+        repository.login(email, password).observeForever(new Observer<Base>() {
+            @Override
+            public void onChanged(Base base) {
+                if (base.isSuccess()) {
+                    FirebaseUser user = (FirebaseUser) base.getData();
+                    UserLogged userLogged = ResponseMapper.mapUserToUserLooged(user);
+                    result.postValue(new Base(userLogged));
+                } else {
+                    result.postValue(base);
+                }
+            }
+        });
+        /*new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -42,7 +59,7 @@ public class LoginViewModel extends AndroidViewModel {
                     result.postValue(new Base("Interrupted", ex));
                 }
             }
-        }).start();
+        }).start();*/
         return result;
     }
 }

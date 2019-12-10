@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "699167345077",
+    "firebase_url": "https://pumatiti.firebaseio.com",
+    "project_id": "pumatiti",
+    "storage_bucket": "pumatiti.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:699167345077:android:c6b59d26144164ed4a71fc",
+        "android_client_info": {
+          "package_name": "edu.upb.pumatiti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "699167345077-q1hurkq0i29hvhvmmii5sg7gse80th3l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.upb.pumatiti",
+            "certificate_hash": "d81dd7f59bdb5e70a6b2e91dd8d9e31d3d805533"
+          }
+        },
+        {
+          "client_id": "699167345077-g09uqleo7tkiraoen4op6kfk8oemui0k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMxoBShloR89dcDibuyLSqttk4SFWNbtU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "699167345077-g09uqleo7tkiraoen4op6kfk8oemui0k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
