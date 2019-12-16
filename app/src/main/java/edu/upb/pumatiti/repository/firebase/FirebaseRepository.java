@@ -19,14 +19,12 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import edu.upb.pumatiti.models.repository.Base;
-import edu.upb.pumatiti.models.repository.Bus;
-import edu.upb.pumatiti.models.repository.Student;
+import edu.upb.pumatiti.models.repository.firebase.Computer;
+import edu.upb.pumatiti.models.repository.firebase.Grade;
+import edu.upb.pumatiti.models.repository.firebase.Student;
 
 public class FirebaseRepository {
     private static FirebaseRepository instance;
@@ -57,7 +55,12 @@ public class FirebaseRepository {
 
 
                             subscribeToValues("users");
-                            Student student = new Student("Andrés", 29);
+                            Computer computer = new Computer("Apple", 16);
+                            List<Grade> grades = new ArrayList<>();
+                            grades.add(new Grade("Kahoot", 90));
+                            grades.add(new Grade("Proyecto 1", 100));
+
+                            Student student = new Student("Andrés", 29, computer, grades);
                             setValue("users/99999", student);
                         } else {
                             results.postValue(new Base("login Failure",
