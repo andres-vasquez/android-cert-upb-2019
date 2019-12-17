@@ -16,6 +16,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -91,11 +92,12 @@ public class FirebaseRepository {
                 try {
                     Map<String, Bus> buses = (HashMap<String, Bus>) dataSnapshot.getValue();
 
+                    Gson gson = new Gson();
                     List<Bus> busesList = new ArrayList<>();
                     Iterator hmIterator = buses.entrySet().iterator();
                     while (hmIterator.hasNext()) {
                         Map.Entry mapElement = (Map.Entry) hmIterator.next();
-                        Bus bus = (Bus) mapElement.getValue();
+                        Bus bus = gson.fromJson(gson.toJson(mapElement.getValue()), Bus.class);
                         busesList.add(bus);
                     }
                     result.postValue(new Base(busesList));

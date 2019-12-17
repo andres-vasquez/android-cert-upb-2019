@@ -1,15 +1,30 @@
 package edu.upb.pumatiti.preparation.models.repository;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+import androidx.room.Relation;
+
 import java.util.List;
 
+@Entity(tableName = "routes_table")
 public class Route {
 
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "uuid")
     private String uuid;
 
+    @NonNull
+    @ColumnInfo(name = "name")
     private String name;
 
+    @Ignore
     private List<Stop> stopList;
 
+    @Ignore
     private List<Bus> busList;
 
     public Route(String uuid, String name) {

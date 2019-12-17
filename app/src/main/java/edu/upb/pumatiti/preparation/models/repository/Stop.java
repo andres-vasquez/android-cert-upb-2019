@@ -1,21 +1,37 @@
 package edu.upb.pumatiti.preparation.models.repository;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "stop_table")
 public class Stop {
 
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "uuid")
     private String uuid;
 
+    @ColumnInfo(name = "name")
     private String name;
 
+    @ColumnInfo(name = "address")
     private String address;
 
+    @ColumnInfo(name = "lat")
     private double lat;
 
+    @ColumnInfo(name = "lng")
     private double lng;
 
+    @ColumnInfo(name = "seat")
     private boolean seat;
 
+    @ColumnInfo(name = "wheelchair")
     private boolean wheelchair;
 
+    @ColumnInfo(name = "status")
     private boolean status;
 
     public String getUuid() {

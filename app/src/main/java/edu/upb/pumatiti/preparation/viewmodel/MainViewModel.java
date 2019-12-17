@@ -9,6 +9,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -53,8 +55,10 @@ public class MainViewModel extends AndroidViewModel {
         repository.getRoutes().observeForever(base -> {
             if (base.isSuccess()) {
                 routes = (List<Route>) base.getData();
+                Log.e("Routes", new Gson().toJson(routes));
                 stops.postValue(ResponseMapper.mapRoutesToStopMarker(routes));
                 myBus.postValue(ResponseMapper.findMyBus(routes, busUuid));
+                getRouteDetails("route-01");
             }
         });
     }

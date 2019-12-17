@@ -1,27 +1,46 @@
 package edu.upb.pumatiti.preparation.models.repository;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "bus_table")
 public class Bus {
 
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "uuid")
     private String uuid;
 
+    @ColumnInfo(name = "type")
     private String type;
 
+    @ColumnInfo(name = "code")
     private String code;
 
+    @ColumnInfo(name = "plate")
     private String plate;
 
+    @ColumnInfo(name = "driveName")
     private String driveName;
 
+    @ColumnInfo(name = "hostName")
     private String hostName;
 
+    @ColumnInfo(name = "capacity")
     private int capacity;
 
+    @ColumnInfo(name = "status")
     private boolean status;
 
+    @ColumnInfo(name = "bike")
     private boolean bike;
 
+    @ColumnInfo(name = "lat")
     private double lat;
 
+    @ColumnInfo(name = "lng")
     private double lng;
 
     public String getUuid() {

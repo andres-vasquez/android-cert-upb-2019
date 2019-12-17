@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -16,14 +17,16 @@ import edu.upb.pumatiti.preparation.models.repository.Bus;
 import edu.upb.pumatiti.preparation.models.repository.Route;
 import edu.upb.pumatiti.preparation.repository.api.ApiRepository;
 import edu.upb.pumatiti.preparation.repository.firebase.FirebaseRepository;
+import edu.upb.pumatiti.preparation.repository.local.LocalRepository;
 import edu.upb.pumatiti.preparation.utils.Constants;
 
 public class Repository implements RepositoryImpl {
 
+    private LocalRepository local;
     private static final String LOG = Repository.class.getSimpleName();
 
     public Repository(Application application) {
-
+        local = new LocalRepository(application);
     }
 
     @Override
@@ -33,7 +36,37 @@ public class Repository implements RepositoryImpl {
 
     @Override
     public LiveData<Base> getRoutes() {
-        return ApiRepository.getInstance().getRoutes();
+        final MutableLiveData<Base> results = new MutableLiveData<>();
+        local.getRoutes().observeForever(new Observer<List<Route>>() {
+            @Override
+            public void onChanged(List<Route> routes) {
+                Log.e(LOG, new Gson().toJson(routes));
+            }
+        });
+
+        ApiRepository.getInstance().getRoutes().observeForever(new Observer<Base>() {
+            @Override
+            public void onChanged(Base base) {
+                if (base.isSuccess()) {
+                    results.postValue(base);
+
+                    List<Route> routes = (List<Route>) base.getData();
+                    if (routes != null && !routes.isEmpty()) {
+                        for (Route route : routes) {
+                            local.insertRoute(route);
+                        }
+                    }
+                } else {
+                    local.getRoutes().observeForever(new Observer<List<Route>>() {
+                        @Override
+                        public void onChanged(List<Route> routes) {
+                            results.postValue(new Base(routes));
+                        }
+                    });
+                }
+            }
+        });
+        return results;
     }
 
     @Override

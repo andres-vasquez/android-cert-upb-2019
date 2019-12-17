@@ -12,14 +12,6 @@ public class StopMarker {
     private MarkerOptions marker;
     private int iconResource;
 
-    public StopMarker(String uuid, String name, String address, LatLng latLng, MarkerOptions marker) {
-        this.uuid = uuid;
-        this.name = name;
-        this.address = address;
-        this.latLng = latLng;
-        this.marker = marker;
-    }
-
     public StopMarker(String uuid, String name, String address, LatLng latLng, int iconResource) {
         this.uuid = uuid;
         this.name = name;
@@ -31,6 +23,16 @@ public class StopMarker {
                 .snippet(address)
                 .position(latLng);
     }
+
+    public StopMarker(String uuid, String name, String address, LatLng latLng, MarkerOptions marker) {
+        this.uuid = uuid;
+        this.name = name;
+        this.address = address;
+        this.latLng = latLng;
+        this.marker = marker;
+    }
+
+
 
     public String getUuid() {
         return uuid;
