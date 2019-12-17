@@ -33,17 +33,16 @@
 
         <activity
             android:name=".ui.activities.MapsTempActivity"
-            android:label="@string/title_activity_maps_temp">
+            android:label="@string/title_activity_maps_temp"></activity>
+        <activity
+            android:name=".ui.activities.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.activities.SplashActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
         <activity
             android:name=".ui.activities.LoginActivity"

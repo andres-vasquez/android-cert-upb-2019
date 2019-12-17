@@ -5,13 +5,9 @@
     android:background="#F44336"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/myTextTextView"
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/map"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textSize="40sp"
-        android:fontFamily="sans-serif-black"
-        android:textStyle="bold"
-        android:text="Maps" />
+        android:layout_height="match_parent" />
+
 </LinearLayout>
