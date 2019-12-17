@@ -14,4 +14,8 @@ public class Constants {
     public static final String API_HOST = "https://firebasestorage.googleapis.com/v0/b/pumatiti.appspot.com/o/";
     public static final String API_PARAM_ALT = "media";
     public static final String API_HEADER_ACCEPT = "application/json";
+
+    public static final double DEFAULT_LAT = -16.524747;
+    public static final double DEFAULT_LNG = -68.110466;
+    public static final float DEFAULT_ZOOM = 16;
 }
