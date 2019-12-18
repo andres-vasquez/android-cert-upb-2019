@@ -161,6 +161,8 @@ public class LoginActivity extends AppCompatActivity {
 
     public void registerClick(View view) {
         Log.e(LOG, "registerClick");
+        Intent intent = new Intent(context, RegisterActivity.class);
+        startActivity(intent);
     }
 
 

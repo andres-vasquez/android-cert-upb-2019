@@ -10,6 +10,7 @@ import java.util.List;
 
 import edu.upb.pumatiti.models.repository.Base;
 import edu.upb.pumatiti.models.repository.Route;
+import edu.upb.pumatiti.models.repository.User;
 
 public class MockRepository implements RepositoryImpl {
     private static MockRepository instance;
@@ -43,6 +44,16 @@ public class MockRepository implements RepositoryImpl {
 
     @Override
     public LiveData<Base> getRouteDetails(String uuid) {
+        return null;
+    }
+
+    @Override
+    public void insert(User user) {
+
+    }
+
+    @Override
+    public LiveData<List<User>> getAll() {
         return null;
     }
 }

@@ -1,12 +1,35 @@
 package edu.upb.pumatiti.repository.local;
 
-public class LocalRepository {
-    private static final LocalRepository ourInstance = new LocalRepository();
+import android.app.Application;
 
-    public static LocalRepository getInstance() {
-        return ourInstance;
+import androidx.lifecycle.LiveData;
+
+import java.util.List;
+
+import edu.upb.pumatiti.models.repository.User;
+import edu.upb.pumatiti.repository.local.db.PumatitiDb;
+
+public class LocalRepository {
+    private PumatitiDb db;
+
+
+    public LocalRepository(Application application) {
+        db = PumatitiDb.getDatabase(application);
     }
 
-    private LocalRepository() {
+    public void insert(final User user) {
+        Thread thread = new Thread(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        db.userDao().insert(user);
+                    }
+                }
+        );
+        thread.start();
+    }
+
+    public LiveData<List<User>> getAll() {
+        return db.userDao().getAll();
     }
 }

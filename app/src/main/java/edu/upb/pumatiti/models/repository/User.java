@@ -1,18 +1,34 @@
 package edu.upb.pumatiti.models.repository;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "users_table")
 public class User {
+
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "uuid")
     private String uuid;
 
+    @ColumnInfo(name = "name")
     private String name;
 
+    @ColumnInfo(name = "email")
     private String email;
 
+    @ColumnInfo(name = "password")
     private String password;
 
+    @ColumnInfo(name = "tel")
     private String tel;
 
+    @ColumnInfo(name = "status")
     private boolean status;
 
+    @ColumnInfo(name = "type")
     private String type;
 
 
